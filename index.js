@@ -8,7 +8,7 @@ http
   .createServer(async (req, res) => {
     let channelID = url.parse(req.url).pathname.split("/")[2];
     res.writeHead(200, { "content-type": "text/json" });
-    if (req.method === "GET") {
+    if (req.method === "GET" && channelID) {
       await getJson(channelID, res);
     }
   })
