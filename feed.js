@@ -10,7 +10,10 @@ let getJson = async (id, res) => {
         });
         //res data
         resp.on('end', async () => {
-            await makeArr(data, res);
+           let result =  await makeArr(data);
+           //console.log(result)
+           res.write(JSON.stringify(result))
+           res.end()
         });
     //res end
     });

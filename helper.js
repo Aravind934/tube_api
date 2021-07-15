@@ -1,11 +1,10 @@
 const { parseString } = require('xml2js');
 
-let makeArr = (data, res) => {
+let makeArr = (data) => {
+    let arr = [];
     parseString(data, (err, json) => {
         if (err) throw err;
-        let arr = [];
         let { entry } = json.feed;
-
         //iterate all entries
         entry.forEach((item) => {
             arr.push({
@@ -21,10 +20,8 @@ let makeArr = (data, res) => {
           ]['views'],
             });
         });
-        //console.log(arr);
-        res.write(JSON.stringify(arr));
-        res.end();
     });
+    return arr
 };
 
 module.exports = {
